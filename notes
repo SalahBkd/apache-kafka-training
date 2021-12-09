@@ -1,0 +1,16 @@
+-- Topic vs Queue
+	when a message is recieved by a TOPIC the message will be sent the first consumer that gets it, then if we have another message it will be receieved by the next consumer (ONE-TO-MANY) and so on (a tour de role)
+	
+	when a message is recieved by a QUEUE it's consumed only by one consumer (ONE-TO-ONE)
+	
+	
+-- JMS vs Kafka
+	Kafka have better performance
+	JMS & RabbitMQ don't have a mechanism to control the speed of receieved messages (PUSH MODEL)
+	Kafka came with a protocol that controls the speed of receieved messages (PULL MODEL)
+	Kafka++: allows us to store flow of records durable & fault tolerant + Real Time Stream Processing (Analytics)
+	Kafka doesn't have Queue & Topic, it have only Topic which is more general, it means that we can build a Queue with it (Consumers Groups)
+	
+	Scenario: collect a lot of data with Kafka then batch process it at some point in time. 
+	
+	
