@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Producer {
     private int counter = 0;
+
     public Producer() {
         Properties properties = new Properties();
         properties.put("bootstrap.servers", "192.168.152.3:9092");
@@ -25,6 +26,7 @@ public class Producer {
         Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
             String key = String.valueOf(counter++);
             String value = String.valueOf(random.nextDouble() * 999999);
+
             kafkaProducer.send(new ProducerRecord<String, String>("test-topic-2", key, value), (recordMetadata, e) -> {
                 System.out.println("Sending message key => " + key + " value => " + value);
                 System.out.println("Partition => " + recordMetadata.partition() + " Offset => " + recordMetadata.offset());
@@ -32,6 +34,7 @@ public class Producer {
 
         }, 1000, 1000, TimeUnit.MILLISECONDS);
     }
+
     public static void main(String[] args) {
         new Producer();
     }
